@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import GlowCard from './GlowCard';
@@ -9,52 +8,39 @@ interface Project {
   title: string;
   description: string;
   techStack: string[];
-  url: string;
 }
 
 const ProjectsSection: React.FC = () => {
   const projects: Project[] = [
     {
       id: 1,
-      title: "Project 1",
-      description: "xyz",
-      techStack: ["React", "Node.js", "Express"],
-      url: "#"
+      title: "Fixrr – Local Trade Services",
+      description: "A MERN-based platform connecting users with local tradies like electricians and plumbers, with secure role-based login and dashboards.",
+      techStack: ["React", "Node.js", "Express", "MongoDB", "JWT", "Nodemailer"]
     },
     {
       id: 2,
-      title: "Project 2",
-      description: "abc",
-      techStack: ["Vue.js", "Django", "MongoDB"],
-      url: "#"
+      title: "Resume Builder App",
+      description: "A full-stack resume generator app with role-based access, reusable React UI, and optimized MongoDB performance.",
+      techStack: ["React", "Express", "MongoDB", "Node.js"]
     },
     {
       id: 3,
-      title: "Project 3",
-      description: "123",
-      techStack: ["Angular", "Flask", "PostgreSQL"],
-      url: "#"
+      title: "E-commerce Platform",
+      description: "Built a scalable online store with secure product management, shopping flow, and responsive UI.",
+      techStack: ["React", "Redux", "Node.js", "MongoDB", "Express"]
     },
     {
       id: 4,
-      title: "Project 4",
-      description: "456",
-      techStack: ["Svelte", "Ruby on Rails", "MySQL"],
-      url: "#"
+      title: "Movie Recommendation System",
+      description: "A Python-Flask ML system offering content-based movie suggestions with real-time front-end display.",
+      techStack: ["Python", "Flask", "Pandas", "Scikit-learn", "HTML/CSS"]
     },
     {
       id: 5,
-      title: "Project 5",
-      description: "789",
-      techStack: ["Next.js", "Spring Boot", "SQLite"],
-      url: "#"     
-    },
-    {
-      id : 6,
-      title: "Project 6",
-      description: "101",
-      techStack: ["Golang", "ASP.NET", "Firebase"],
-      url: "#"
+      title: "House Price Prediction Tool",
+      description: "React- and Flask-powered tool to predict real estate values based on regression models and user inputs.",
+      techStack: ["React", "Flask", "Pandas", "Scikit-learn"]
     }
   ];
 
@@ -72,25 +58,23 @@ const ProjectsSection: React.FC = () => {
   };
 
   return (
-    <section id="projects" className="py-20 px-4 relative overflow-hidden">
-      {/* Premium light effect for top corner */}
-      <div className="corner-light-premium top-0 right-0 opacity-50"></div>
-      
-      {/* Light rays */}
+    <section id="projects" className="py-20 px-4 relative overflow-hidden text-[#E5E7EB]">
+      {/* Light accents */}
+      <div className="corner-light-premium top-0 right-0 opacity-40"></div>
       <div className="light-ray-premium opacity-20" style={{ top: '30%', right: '-20%', width: '70%', transform: 'rotate(165deg)' }}></div>
       <div className="light-ray-premium opacity-15" style={{ top: '60%', right: '-10%', width: '50%', transform: 'rotate(150deg)' }}></div>
-      
+
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.h2 
-          className="section-heading-premium relative"
+          className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-400 mb-12 text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.6 }}
         >
           Featured Projects
         </motion.h2>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, index) => (
             <motion.div
@@ -103,36 +87,26 @@ const ProjectsSection: React.FC = () => {
             >
               <GlowCard 
                 intensity={index % 3 === 0 ? 'high' : index % 2 === 0 ? 'medium' : 'low'}
-                className="group h-full"
+                className="group h-full bg-white/5 backdrop-blur-md rounded-xl border border-white/10 transition-all"
                 hoverScale={1.03}
               >
                 <div className="p-6 h-full flex flex-col relative z-10">
-                  {/* Premium highlight effect on hover */}
-                  <div className="absolute -inset-x-4 -inset-y-4 bg-white/5 rounded-xl opacity-0 group-hover:opacity-100 -z-10 blur-2xl transition-opacity"></div>
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-10 bg-gradient-to-br from-white via-white/20 to-transparent transition-all duration-500"></div>
-                  
-                  <h3 className="text-2xl font-bold italic mb-3 group-hover:text-white transition-colors">{project.title}</h3>
+                  {/* Smooth hover highlight */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-10 bg-gradient-to-br from-purple-500 via-pink-400 to-red-400 blur-xl rounded-xl transition-all"></div>
+
+                  <h3 className="text-2xl font-semibold mb-3 group-hover:text-white transition-colors">{project.title}</h3>
                   <p className="text-white/70 mb-6 group-hover:text-white/90 transition-colors">{project.description}</p>
-                  
+
                   <div className="flex flex-wrap gap-2 mb-6 mt-auto">
                     {project.techStack.map((tech, i) => (
                       <span 
                         key={i} 
-                        className="text-xs px-3 py-1 bg-dark-200/50 backdrop-blur-sm border border-white/5 rounded-full text-white/60 group-hover:text-white/90 group-hover:border-white/20 transition-all duration-300"
+                        className="text-xs px-3 py-1 bg-dark-200/30 backdrop-blur-sm border border-white/10 rounded-full text-white/60 group-hover:text-white/90 transition-all duration-300"
                       >
                         {tech}
                       </span>
                     ))}
                   </div>
-                  
-                  <a 
-                    href={project.url} 
-                    className="inline-flex items-center gap-1 text-sm text-white/70 hover:text-white group-hover:text-white/90 transition-colors relative mt-auto"
-                  >
-                    <span>View Project</span>
-                    <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-                    <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-white/30 group-hover:w-full transition-all duration-300"></span>
-                  </a>
                 </div>
               </GlowCard>
             </motion.div>

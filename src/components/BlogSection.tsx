@@ -1,78 +1,70 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { BadgeCheck } from 'lucide-react';
 
-interface BlogPost {
+interface Certificate {
   id: number;
   title: string;
-  url: string;
-  date: string;
+  issuer: string;
+  status: string;
 }
 
 const BlogSection: React.FC = () => {
-  const blogPosts: BlogPost[] = [
+  const certificates: Certificate[] = [
     {
       id: 1,
-      title: "How I solved 300+ LeetCode problems in 3 months",
-      url: "#",
-      date: "March 15, 2023"
+      title: "Python Pro Bootcamp",
+      issuer: "Udemy",
+      status: "In Progress"
     },
     {
       id: 2,
-      title: "10 SaaS UI Patterns You Should Steal Today",
-      url: "#",
-      date: "February 22, 2023"
-    },
-    {
-      id: 3,
-      title: "My journey from a 2⭐ to 5⭐ coder on CodeChef",
-      url: "#",
-      date: "January 10, 2023"
-    },
-    {
-      id: 4,
-      title: "Building a real-time collaborative editor with WebSockets",
-      url: "#",
-      date: "December 5, 2022"
+      title: "MERN Developer Internship",
+      issuer: "Zcientia Labs",
+      status: "Completed"
     }
   ];
 
   return (
-    <section className="py-20 px-4">
-      <div className="max-w-4xl mx-auto">
+    <section className="py-20 px-4 relative overflow-hidden text-[#E5E7EB]">
+      {/* Decorative glow */}
+      <div className="light-ray-premium opacity-20 absolute top-[20%] left-[-10%] w-[70%] transform rotate-[30deg] z-0"></div>
+
+      <div className="max-w-4xl mx-auto relative z-10">
         <motion.h2 
-          className="section-heading"
+          className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-400 mb-12 text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          Sharing stories & threads from my coding journey.
+          Certifications & Learning
         </motion.h2>
-        
+
         <div className="space-y-6">
-          {blogPosts.map((post, index) => (
+          {certificates.map((cert, index) => (
             <motion.div 
-              key={post.id}
+              key={cert.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <a 
-                href={post.url}
-                className="block glow-card p-6 hover:border-white/40 transition-colors group"
-              >
-                <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-2">
-                  <h3 className="text-lg font-medium group-hover:underline decoration-white/30 underline-offset-4">
-                    {post.title}
-                  </h3>
-                  <div className="flex items-center gap-4">
-                    <span className="text-sm text-white/60">{post.date}</span>
-                    <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+              <div className="relative group rounded-xl border border-white/10 p-6 bg-white/5 backdrop-blur-md overflow-hidden hover:border-white/20 transition-all">
+                {/* Glow hover layer */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500 bg-gradient-to-tr from-purple-500 via-pink-500 to-red-500 blur-lg rounded-xl z-0"></div>
+
+                <div className="relative z-10 flex justify-between items-center">
+                  <div>
+                    <h3 className="text-lg font-semibold">{cert.title}</h3>
+                    <p className="text-sm text-white/60">{cert.issuer}</p>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm text-white/80 group-hover:text-white">
+                    <BadgeCheck className="w-5 h-5 text-purple-400 group-hover:scale-110 transition-transform" />
+                    {cert.status}
                   </div>
                 </div>
-              </a>
+              </div>
             </motion.div>
           ))}
         </div>
